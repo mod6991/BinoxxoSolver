@@ -141,7 +141,7 @@ class MyGame(arcade.Window):
 
     def try_to_solve(self):
         while True:
-            s1 = self.binoxxo.solve_is_surrounded()
+            s1 = self.binoxxo.solve_surrounded()
             s2 = self.binoxxo.solve_twins()
             s3 = self.binoxxo.solve_full()
             s4 = self.binoxxo.solve_4lt4()

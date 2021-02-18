@@ -21,10 +21,20 @@ class Binoxxo:
             col.append(row[col_i])
         return col
 
-    def solve_is_surrounded(self):
+    def solve_surrounded(self):
         solved_anything = False
 
-        # horizontal check
+        solved_hor = self.solve_surrounded_hor()
+        solved_ver = self.solve_surrounded_ver()
+
+        if solved_hor or solved_ver:
+            solved_anything = True
+
+        return solved_anything
+
+    def solve_surrounded_hor(self):
+        solved_anything = False
+
         for row_i in range(10):
             for col_i in range(1, 9):
                 cell_val = self.gb[row_i][col_i]
@@ -36,7 +46,11 @@ class Binoxxo:
                         print(f'({row_i}, {col_i}) was surrounded horizontally')
                         solved_anything = True
 
-        # vertical check
+        return solved_anything
+
+    def solve_surrounded_ver(self):
+        solved_anything = False
+
         for row_i in range(1, 9):
             for col_i in range(10):
                 cell_val = self.gb[row_i][col_i]
@@ -53,7 +67,17 @@ class Binoxxo:
     def solve_twins(self):
         solved_anything = False
 
-        # horizontal check
+        solved_hor = self.solve_twins_hor()
+        solved_ver = self.solve_twins_ver()
+
+        if solved_hor or solved_ver:
+            solved_anything = True
+
+        return solved_anything
+
+    def solve_twins_hor(self):
+        solved_anything = False
+
         for row_i in range(10):
             for col_i in range(1, 9):
                 cell_val = self.gb[row_i][col_i]
@@ -69,7 +93,11 @@ class Binoxxo:
                     print(f'({row_i}, {col_i - 1}) has twins on the right')
                     solved_anything = True
 
-        # vertical check
+        return solved_anything
+
+    def solve_twins_ver(self):
+        solved_anything = False
+
         for row_i in range(1, 9):
             for col_i in range(10):
                 cell_val = self.gb[row_i][col_i]
@@ -100,7 +128,17 @@ class Binoxxo:
     def solve_full(self):
         solved_anything = False
 
-        # horizontal check
+        solved_hor = self.solve_full_hor()
+        solved_ver = self.solve_full_ver()
+
+        if solved_hor or solved_ver:
+            solved_anything = True
+
+        return solved_anything
+
+    def solve_full_hor(self):
+        solved_anything = False
+
         for row_i in range(10):
             row = self.get_row(row_i)
             count_o, count_x = Binoxxo.count(row)
@@ -119,7 +157,11 @@ class Binoxxo:
                 print(f'fill row {row_i} with O because 5 X were found')
                 solved_anything = True
 
-        # vertical check
+        return solved_anything
+
+    def solve_full_ver(self):
+        solved_anything = False
+
         for col_i in range(10):
             col = self.get_col(col_i)
             count_o, count_x = Binoxxo.count(col)
@@ -173,7 +215,17 @@ class Binoxxo:
     def solve_4lt4(self):
         solved_anything = False
 
-        # horizontal check
+        solved_hor = self.solve_4lt4_hor()
+        solved_ver = self.solve_4lt4_ver()
+
+        if solved_hor or solved_ver:
+            solved_anything = True
+
+        return solved_anything
+
+    def solve_4lt4_hor(self):
+        solved_anything = False
+
         for row_i in range(10):
             row = self.get_row(row_i)
             count_o, count_x = Binoxxo.count(row)
@@ -202,7 +254,11 @@ class Binoxxo:
                                     print(f'({row_i}, {col_i}) can only be O on the row')
                                     solved_anything = True
 
-        # vertical check
+        return solved_anything
+
+    def solve_4lt4_ver(self):
+        solved_anything = False
+
         for col_i in range(10):
             col = self.get_col(col_i)
             count_o, count_x = Binoxxo.count(col)
